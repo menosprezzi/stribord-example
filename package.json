@@ -1,0 +1,14 @@
+{
+  "name": "stribord-examples",
+  "packageManager": "yarn@3.2.1",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "start:app": "yarn workspace @stribord-examples/app run start",
+    "start:extension": "yarn workspace @stribord-examples/extension run start"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  }
+}
