@@ -1,11 +1,17 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import { Overrides, StribordOverrides } from '@stribord/react-client';
+import RemoteApp from '@stribord-examples/app/app';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import App from "./app";
+import manifest from './manifest';
+
+const overrides: Overrides = {
+  '@stribord-examples/extension': manifest
+};
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById("root")
+  <StribordOverrides value={overrides}>
+    <RemoteApp />
+  </StribordOverrides>,
+  document.getElementById('root')
 );

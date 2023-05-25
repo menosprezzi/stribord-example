@@ -1,5 +1,6 @@
 # CodeSandbox supports debian & ubuntu based images
-FROM node:18-bullseye
+FROM node:16-buster-slim
+
 
 # The project will be mounted in /workspace by default
 

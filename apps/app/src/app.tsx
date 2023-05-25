@@ -20,22 +20,40 @@ import "@ionic/react/css/display.css";
 
 import { AppLayout } from "./components/layout";
 import { AppRoutes } from "./routes";
+import {
+  HostConfig,
+  LocalBackend,
+  StribordDeployment,
+  StribordHost,
+  WebpackLoader,
+} from "@stribord/react-client";
+import manifest from "./manifest";
 
 setupIonicReact({
   mode: "ios",
 });
 
+const stribordConfig: HostConfig = {
+  backend: new LocalBackend(),
+  loader: new WebpackLoader(),
+  appManifest: manifest,
+};
+
 function App() {
   return (
-    <IonReactRouter>
-      <IonApp>
-        <AppLayout>
-          <IonRouterOutlet style={{ marginTop: 64 }}>
-            <AppRoutes />
-          </IonRouterOutlet>
-        </AppLayout>
-      </IonApp>
-    </IonReactRouter>
+    <StribordHost config={stribordConfig}>
+      <StribordDeployment id="@stribord-examples/app:my-client">
+        <IonReactRouter>
+          <IonApp>
+            <AppLayout>
+              <IonRouterOutlet style={{ marginTop: 64 }}>
+                <AppRoutes />
+              </IonRouterOutlet>
+            </AppLayout>
+          </IonApp>
+        </IonReactRouter>
+      </StribordDeployment>
+    </StribordHost>
   );
 }
 

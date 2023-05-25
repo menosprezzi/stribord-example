@@ -111,7 +111,9 @@ module.exports = {
     new ModuleFederationPlugin({
       name: "StribordExamplesExtension",
       filename: "./remoteEntry.js",
-      exposes: {},
+      exposes: {
+        "./app": "./src/app",
+      },
       shared: {
         "@ionic/react": {
           singleton: true,

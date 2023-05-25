@@ -109,14 +109,12 @@ module.exports = {
       exclude: [/node_modules/, /bootstrap\.tsx$/],
     }),
     new ModuleFederationPlugin({
-      name: "StribordExamplesApp",
+      name: "StribordExamplesExtension",
       filename: "./remoteEntry.js",
-      exposes: {},
-      remotes: {
-        "@stribord-examples/app": [
-          `StribordExamplesApp@${process.env.REMOTE_URL}`,
-        ],
+      exposes: {
+        "./manifest": "./src/manifest",
       },
+      remotes: {},
       shared: {
         "@ionic/react": {
           singleton: true,
