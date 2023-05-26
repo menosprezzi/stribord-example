@@ -16,7 +16,11 @@ import { FilterBy } from "../types/filters";
 
 import { DashboardCard, DashboardCardProps } from "./dashboard-card";
 
-const DashboardCardSlotWrapper = (props: DashboardCardProps) => <IonCol size="12" sizeMd="4"><DashboardCard {...props} /></IonCol>;
+const DashboardCardSlotWrapper = (props: DashboardCardProps) => (
+  <IonCol size="12" sizeMd="4">
+    <DashboardCard {...props} />
+  </IonCol>
+);
 
 export const DashboardPage = () => {
   const [filterBy, setFilterBy] = useState<FilterBy>(FilterBy.YTD);
@@ -48,19 +52,22 @@ export const DashboardPage = () => {
         <IonRow style={{ gap: 16 }}>
           <IonCol size="12" sizeMd="4">
             <DashboardCard title={"Sales in " + filterBy}>
-              <ResponsiveContainer width="100%" height="100%" aspect={0}>
-                <BarChart
-                  data={filterBy === FilterBy.YTD ? salesYtd : salesMtd}
-                >
-                  <Bar dataKey="value" fill="#8884d8" />
-                  <XAxis dataKey="date" />
-                  <Legend />
-                </BarChart>
-              </ResponsiveContainer>
+              <BarChart
+                width={300}
+                height={360}
+                data={filterBy === FilterBy.YTD ? salesYtd : salesMtd}
+              >
+                <Bar dataKey="value" fill="#8884d8" />
+                <XAxis dataKey="date" />
+                <Legend />
+              </BarChart>
             </DashboardCard>
           </IonCol>
           <Suspense fallback={<IonLoading />}>
-            <DashboardCardSlot filterBy={filterBy} wrapper={DashboardCardSlotWrapper} />
+            <DashboardCardSlot
+              filterBy={filterBy}
+              wrapper={DashboardCardSlotWrapper}
+            />
           </Suspense>
         </IonRow>
       </IonGrid>

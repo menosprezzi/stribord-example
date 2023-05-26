@@ -13,19 +13,28 @@ export const LeadsDashboardCard: DashboardCardSlot = ({
   filterBy,
 }) => {
   return (
-    <Wrapper title={"New Leads " + filterBy}>
-      <ResponsiveContainer width="100%" height={300}>
-        <LineChart data={filterBy === "YTD" ? leadsYtd : leadsMtd}>
-          <Line
-            type="monotone"
-            dataKey="value"
-            stroke="#8884d8"
-            strokeWidth={2}
-          />
-          <Legend />
-          <XAxis dataKey="date" />
-        </LineChart>
-      </ResponsiveContainer>
+    <Wrapper
+      title={"New Leads " + filterBy}
+      cardButtons={[
+        <IonRouterLink routerLink={"leads"} key="leads">
+          <IonButton fill="clear">View Details</IonButton>
+        </IonRouterLink>,
+      ]}
+    >
+      <LineChart
+        width={300}
+        height={360}
+        data={filterBy === "YTD" ? leadsYtd : leadsMtd}
+      >
+        <Line
+          type="monotone"
+          dataKey="value"
+          stroke="#8884d8"
+          strokeWidth={2}
+        />
+        <Legend />
+        <XAxis dataKey="date" />
+      </LineChart>
     </Wrapper>
   );
 };

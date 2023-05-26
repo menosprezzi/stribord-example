@@ -114,7 +114,11 @@ module.exports = {
       exposes: {
         "./manifest": "./src/manifest",
       },
-      remotes: {},
+      remotes: {
+        "@stribord-examples/app": [
+          `StribordExamplesApp@${process.env.REMOTE_URL}`,
+        ],
+      },
       shared: {
         "@ionic/react": {
           singleton: true,

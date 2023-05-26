@@ -10,6 +10,7 @@
     "@babel/core": "^7.20.2",
     "@ionic/react": "^7.0.0",
     "@ionic/react-router": "^7.0.0",
+    "@stribord/core-client": "^0.0.6",
     "@stribord/react-client": "^0.0.6",
     "history": "4.10.1",
     "react": "^16.0.0",

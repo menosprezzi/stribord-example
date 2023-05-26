@@ -5,6 +5,7 @@ const manifest: ExtensionManifest = {
   id: "@stribord-examples/extension",
   implementations: {
     '@stribord-examples/app': {
+      'routes': () => import('./implementations/leads-routes').then(mod => mod.LeadsRoutes),
       "dashboard-card": () =>
         import("./implementations/leads-dashboard-card").then(
           (mod) => mod.LeadsDashboardCard

@@ -1630,6 +1630,7 @@ __metadata:
     "@ionic/react-router": ^7.0.0
     "@pmmmwh/react-refresh-webpack-plugin": ^0.5.10
     "@stribord/cli": ^0.0.8
+    "@stribord/core-client": ^0.0.6
     "@stribord/react-client": ^0.0.6
     "@types/react": ^16.0.0
     "@types/react-dom": ^16.0.0
