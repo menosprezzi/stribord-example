@@ -61,7 +61,15 @@ export const DashboardCard: React.FC<DashboardCardProps> = ({
           </IonButton>
         </IonRow>
       </IonCardHeader>
-      <IonCardContent style={{ width: "100%", height: "360px" }}>
+      <IonCardContent
+        style={{
+          width: "100%",
+          height: "360px",
+          justifyContent: "center",
+          alignItems: "center",
+          display: "flex",
+        }}
+      >
         {children}
       </IonCardContent>
       {cardButtons}

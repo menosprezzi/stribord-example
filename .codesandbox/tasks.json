@@ -1,6 +1,9 @@
 {
   // These tasks will run in order when initializing your CodeSandbox project.
-  "setupTasks": ["yarn"],
+  "setupTasks": [
+    "yarn",
+    "echo export STRIBORD_HOME=\"$HOME/workspace\" >> ~/.zshrc"
+  ],
 
   // These tasks can be run from CodeSandbox. Running one will open a log in the app.
   "tasks": {
@@ -13,11 +16,7 @@
       "command": "yarn run start:app",
       "runAtStart": true,
       "restartOn": {
-        "files": [
-          "yarn.lock",
-          "apps/app/webpack.config.js",
-          "apps/app/package.json"
-        ]
+        "files": ["yarn.lock", "apps/app/webpack.config.js"]
       },
       "preview": {
         "port": 3001
@@ -27,11 +26,7 @@
       "name": "Start Extension development server",
       "command": "yarn run start:extension",
       "restartOn": {
-        "files": [
-          "yarn.lock",
-          "apps/extension/webpack.config.js",
-          "apps/extension/package.json"
-        ]
+        "files": ["yarn.lock", "apps/extension/webpack.config.js"]
       },
       "preview": {
         "port": 3002
