@@ -1,3 +1,4 @@
+<!-- TODO: questionar se o reload a cada alteração do lock não fica chato. -->
 # Uma Plataforma para o desenvolvimento de Aplicações *Web* extensíveis baseada em *Micro-Frontends* 
 
 <!-- Incluir uma intro amigável explicando do que se trata. esse mesmo texto deve ser utilizado para compartilhar -->
@@ -157,26 +158,26 @@ yarn exec stribord init
 
 Você vai responder:
 
-> ✔ The id of your Domain (if it not exist on the backend, it will be created) · **stribord-examples**
+> ✔ Enable remote synchronization? If you want to use Stribord only locally, just disable it. (You can toggle it later too) · **no** / yes
+
+A plataforma foi desenvolvida para operar de forma distribuida, da mesma forma que você usa o seu Git: Você tem o seu Local e o seu Remote (que chamamos aqui de **BackEnd**). Assim, possibilitamos que você realize alterações e submeta ao **BackEnd** para publicar. Podemos fornecer uma série de automações que permitem, por exemplo, verificar se suas alterações não irão impactar negativamente (uma *breaking change*) alguma **Extension** que consome os seus pontos de extensão e permitir que os devs tome ações proativamente.
+
+> ✔ The Id of your Domain · **stribord-examples**
 
 **Domain** (Domínio) seria o nome da organização no qual você estará publicando suas aplicações. Isso cria uma divisão lógica na plataforma **Stribord**, isto é, um domínio não enxerga o que o outro possui. Na vida real, pode também ser utilizado para segregar ambientes (development, staging, production).
 
-> ✔ The id of the extendable that you want to create · **@stribord-examples/app**
+> ✔ The Id of the extendable that you want to create · **@stribord-examples/app**
 
 **Extendable** é o nome que damos para a peça fundamenteal que a plataforma conhece. Todo código é considerado extensível, logo toda app que é registrada na plataforma é um **Extendable**. O id do **Extendable** deve representar ele bem (o ideal é que se uso o mesmo id do package.json do projeto, para facilitar a identificação). O **Id** é único para todo o **Domain**.
 
-> ✔ The type of the extendable that you want to create · **app**
+> ✔ Select the Extendable's Type · **app**
 
 A plataforma conhece 2 tipos de Extendables:
 
 - **Extensions**: São MicroApps que tem o objetivo de estender a funcionalidade das aplicações (ou de outras Extensions). Pode ser utilizada para fatear um grande produto em diversas MicroApps que se conversam. Pense nelas como *PlugIns do seu VSCode*.
 - **Apps**: São as aplicações que serão publicadas como **host**, podendo elas expor diversos **Pontos de Extensão**, podendo carregar as diversas **Extensions** publicadas para apresentar suas funcionalidades.
 
-> ✔ Enable synchronization? If you want to use Stribord only locally, just disable it. (You can toggle it later too) · **no** / yes
-
-A plataforma foi desenvolvida para operar de forma distribuida, da mesma forma que você usa o seu Git: Você tem o seu Local e o seu Remote (que chamamos aqui de **BackEnd**). Assim, possibilitamos que você realize alterações e submeta ao **BackEnd** para publicar. Podemos fornecer uma série de automações que permitem, por exemplo, verificar se suas alterações não irão impactar negativamente (uma *breaking change*) alguma **Extension** que consome os seus pontos de extensão e permitir que os devs tome ações proativamente.
-
-> ℹ️ Observação: A plataforma não substitui o Git. Você ainda terá seus repositórios. **O que a plataforma entende de alterações e realiza o controle são nas meta-informações do seu Extendable, apenas.**
+> ℹ️ Observação: Apenas para esclarecer sobre a sincronização, a plataforma não substitui o Git. Você ainda terá seus repositórios. **O que a plataforma entende de alterações e realiza o controle são nas meta-informações do seu Extendable, apenas.**
 
 Vamos desabilitar a sincronização com o **BackEnd** pois estaremos fazendo apenas um teste local aqui.
 
