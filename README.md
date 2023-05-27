@@ -40,7 +40,7 @@ Mas como manter o propósito de que a aplicação **my-product-web** seja a casc
 
 Tendo em vista os desafios presentes no desenvolvimento em arquitetura de MFEs... (escrever mais aqui)
 
-<img align="left" src="https://raw.githubusercontent.com/menosprezzi/stribord-example/main/docs/assets/stribord-logo.png" alt="Logo do Stribord" />**Stribord** é uma plataforma de **desenvolvimento**, **gestão** e **orquestração** de aplicações orientadas a arquitetura de MicroFrontEnds. A ideia é fornecer a tecnologia necessária para resolver os problemas naturais de arquitetura distribuída presentes em MFEs, trazendo conceitos estruturais que fundamentem o design de sistemas em MFE e soluções técnicas que permitam executar essa arquitetura, visando garantir a integração não só entre os componentes mas também entre suas equipes.
+<img align="left" src="https://raw.githubusercontent.com/menosprezzi/stribord-example/main/docs/assets/stribord-logo.png" alt="Logo do Stribord" width="120"/>**Stribord** é uma plataforma de **desenvolvimento**, **gestão** e **orquestração** de aplicações orientadas a arquitetura de MicroFrontEnds. A ideia é fornecer a tecnologia necessária para resolver os problemas naturais de arquitetura distribuída presentes em MFEs, trazendo conceitos estruturais que fundamentem o design de sistemas em MFE e soluções técnicas que permitam executar essa arquitetura, visando garantir a integração não só entre os componentes mas também entre suas equipes.
 
 Através da CLI e SDKs, os desenvolvedores podem criar e configurar aplicações FrontEnd **extensíveis**, controlar como e quais MFEs serão consumidos, além manter e versionar meta-informações sobre estes MFEs e suas relações no modelo GitOps.
 
@@ -50,7 +50,7 @@ Ficou na dúvida em como funciona? Vamos executar o tutorial e logo você estar�
 
 > 🧐 **Por quê o nome *Stribord*?**
 >
-> Como as demais tecnologias de aplicações distribuídas fazem referência a termos náuticos (ex. Docker, Kubernetes, Istio), **Stribord** foi o nome escolhido por representar orientação à face direita de uma embarcação. E como FrontEnd é a cara/face de um sistema, fez sentido 😄
+> Como as demais tecnologias de aplicações distribuídas fazem referência a termos náuticos (ex. Docker, Kubernetes, Istio), **Stribord** foi o nome escolhido por representar orientação à face direita de uma embarcação. E como FrontEnd é a cara/face de um sistema... fez sentido 😄
 >
 > # Stribord
 >
