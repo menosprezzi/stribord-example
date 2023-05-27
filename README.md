@@ -24,9 +24,7 @@ Imaginamos que temos um Produto SaaS de Marketing que apresenta, entre suas pág
 
 A aplicação FrontEnd Web desta solução começa a crescer e logo pensamos que é uma boa ideia quebrar ela em módulos menores, utilizando de MicroFrontEnd (*MFE*), cada um com seu conjunto de funcionalidades e páginas. Ficamos então uma aplicação *"mãe"* (chamada de *shell*, no conceito de microfrontends) que tem a responsabilidade de ser uma casca que integra os demais MicroApps em uma aplicação só.
 
-![mfes-produto](./docs/assets/mfes-produto.png)
-
-
+![mfes-produto](https://raw.githubusercontent.com/menosprezzi/stribord-example/main/docs/assets/mfes-produto.png)
 
 Isso possibilitaria também que tivéssemos um time (*squad*) responsável para cada MicroApp, segregando suas responsabilidades.
 
@@ -34,15 +32,15 @@ Dado os demais problemas que comentamos acima, essa abordagem introduz mais um o
 
 O ideal é termos um cenário onde esta relação é invertida. Dessa forma, a *squad* que detêm o componente **my-product-web** torna-se então uma única fornecedora e a responsabilidade fica então distribuída entre as squads.
 
-![mfes-invertido](/Users/guilhermeprezzi/Library/CloudStorage/GoogleDrive-guilhermeprezzi1997@gmail.com/Other computers/Meu MacBook Pro/Documents/Unisinos/PROJFINAL/TCC/MicroFrontEnd/assets/mfes-invertido.png)
+![mfes-invertido](https://raw.githubusercontent.com/menosprezzi/stribord-example/main/docs/assets/mfes-invertido.png)
 
 Mas como manter o propósito de que a aplicação **my-product-web** seja a casca que integre as demais funcionalidades? Como possibilitarmos isso em MicroFrontEnds?
 
-## Apresentando: Stribord
+## Stribord
 
-Tendo em vista os desafios presentes no desenvolvimento em arquitetura de MFEs...
+Tendo em vista os desafios presentes no desenvolvimento em arquitetura de MFEs... (escrever mais aqui)
 
-<img align="left" src="/Users/guilhermeprezzi/Downloads/Large (1).png" alt="Logo do Stribord" />**Stribord** é uma plataforma de **desenvolvimento**, **gestão** e **orquestração** de aplicações orientadas a arquitetura de MicroFrontEnds. A ideia é fornecer a tecnologia necessária para resolver os problemas naturais de arquitetura distribuída presentes em MFEs, trazendo conceitos estruturais que fundamentem o design de sistemas em MFE e soluções técnicas que permitam executar essa arquitetura, visando garantir a integração não só entre os componentes mas também entre suas equipes.
+<img align="left" src="https://raw.githubusercontent.com/menosprezzi/stribord-example/main/docs/assets/stribord-logo.png" alt="Logo do Stribord" />**Stribord** é uma plataforma de **desenvolvimento**, **gestão** e **orquestração** de aplicações orientadas a arquitetura de MicroFrontEnds. A ideia é fornecer a tecnologia necessária para resolver os problemas naturais de arquitetura distribuída presentes em MFEs, trazendo conceitos estruturais que fundamentem o design de sistemas em MFE e soluções técnicas que permitam executar essa arquitetura, visando garantir a integração não só entre os componentes mas também entre suas equipes.
 
 Através da CLI e SDKs, os desenvolvedores podem criar e configurar aplicações FrontEnd **extensíveis**, controlar como e quais MFEs serão consumidos, além manter e versionar meta-informações sobre estes MFEs e suas relações no modelo GitOps.
 
@@ -89,7 +87,7 @@ Neste tutorial, vamos fazer o seguinte experimento:
 
 Vamos utilizar o CodeSandbox para a execução deste Playground. Para iniciar, basta realizar o **Fork** desse sandbox em sua conta. Você pode criar uma conta no CodeSandbox gratuitamente utilizando sua conta do Github, Google ou Appple.
 
-<img src="/Users/guilhermeprezzi/Library/CloudStorage/GoogleDrive-guilhermeprezzi1997@gmail.com/Other computers/Meu MacBook Pro/Documents/Unisinos/PROJFINAL/TCC/MicroFrontEnd/assets/codesandbox fork.png" alt="image-20230526152830243" style="zoom: 50%;" />
+<img src="https://raw.githubusercontent.com/menosprezzi/stribord-example/main/docs/assets/codesanbox-fork.png" alt="image-20230526152830243" style="zoom: 50%;" />
 
 O Sandbox está rodando em uma container Linux Debian com Node v16 já pré-instalado.
 
@@ -233,7 +231,7 @@ Feito isso, confirme se sua aplicação está ok! Estamos prontos para adicionar
 
 O conceito de **Ponto de Extensão** é o racional fundamental que sustenta o modelo de lidar com MicroFrontEnds no **Stribord**. Imaginamos que nossa aplicação é uma Casa. Criar Pontos de Extensão nela seria como se colocássemos novas tomadas nela, possibilitando que outras pessoas *pluggem* novas coisas à elas, desde que seja o tipo de tomada correta, ou seja, desde que respeitem o **contrato de API** que a aplicação expõe.
 
-![Premium Vector | Realistic socket and plug ac power connector american and  european types of electric equipment vector multiple standards socket and  plug isolated set](/Users/guilhermeprezzi/Library/CloudStorage/GoogleDrive-guilhermeprezzi1997@gmail.com/Other computers/Meu MacBook Pro/Documents/Unisinos/PROJFINAL/TCC/MicroFrontEnd/assets/plugin-types.jpg)
+![plugin-types](https://raw.githubusercontent.com/menosprezzi/stribord-example/main/docs/assets/plugin-types.png)
 
 Vamos criar um **Ponto de Extensão** que possibilite que outras MicroApps adicionem um card a dashboard.
 
@@ -401,7 +399,7 @@ Por se tratar de uma **Extension**, o **Stribord** irá precisar saber em que UR
 
 Como estamos executando ela localmente, vamos informar a URL em que a aplicação **extestension** está executando.
 
-<img src="/Users/guilhermeprezzi/Library/CloudStorage/GoogleDrive-guilhermeprezzi1997@gmail.com/Other computers/Meu MacBook Pro/Documents/Unisinos/PROJFINAL/TCC/MicroFrontEnd/assets/extension-url.png" alt="image-20230527155045901" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/menosprezzi/stribord-example/main/docs/assets/extension-url.png" alt="image-20230527155045901" style="zoom:50%;" />
 
 No exemplo da imagem, a url a ser informada seria `https://g3md3e-3002.csb.app/remoteEntry.js`.
 
