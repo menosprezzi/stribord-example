@@ -87,11 +87,11 @@ Neste tutorial, vamos fazer o seguinte experimento:
 
 Vamos utilizar o CodeSandbox para a execução deste Playground. Para iniciar, basta realizar o **Fork** desse sandbox em sua conta. Você pode criar uma conta no CodeSandbox gratuitamente utilizando sua conta do Github, Google ou Appple.
 
-<img src="https://raw.githubusercontent.com/menosprezzi/stribord-example/main/docs/assets/codesanbox-fork.png" alt="image-20230526152830243" style="zoom: 50%;" />
+<img src="https://raw.githubusercontent.com/menosprezzi/stribord-example/main/docs/assets/codesandbox-fork.png" alt="codesandbox-fork" style="zoom: 50%;" />
 
 O Sandbox está rodando em uma container Linux Debian com Node v16 já pré-instalado.
 
-<!-- imagem e anatomia do codesanbox -->
+<!-- imagem e anatomia do codesandbox -->
 
 <!-- descrever brevemente -->
 
@@ -231,7 +231,7 @@ Feito isso, confirme se sua aplicação está ok! Estamos prontos para adicionar
 
 O conceito de **Ponto de Extensão** é o racional fundamental que sustenta o modelo de lidar com MicroFrontEnds no **Stribord**. Imaginamos que nossa aplicação é uma Casa. Criar Pontos de Extensão nela seria como se colocássemos novas tomadas nela, possibilitando que outras pessoas *pluggem* novas coisas à elas, desde que seja o tipo de tomada correta, ou seja, desde que respeitem o **contrato de API** que a aplicação expõe.
 
-![plugin-types](https://raw.githubusercontent.com/menosprezzi/stribord-example/main/docs/assets/plugin-types.png)
+![plugin-types](https://raw.githubusercontent.com/menosprezzi/stribord-example/main/docs/assets/plugin-types.jpg)
 
 Vamos criar um **Ponto de Extensão** que possibilite que outras MicroApps adicionem um card a dashboard.
 
