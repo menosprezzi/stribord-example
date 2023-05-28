@@ -126,9 +126,9 @@ Vamos utilizar o CodeSandbox para a execução deste Playground. Para iniciar, b
 
 O Playground está rodando em um container Linux Debian com Node v16 já pré-instalado.
 
-<!-- imagem e anatomia do codesandbox -->
+<img src="https://raw.githubusercontent.com/menosprezzi/stribord-example/main/docs/assets/codesandbox-anatomy.png" alt="codesandbox-fork" style="zoom: 50%;" />
 
-<!-- descrever brevemente -->
+Logo você vai perceber que o CodeSandbox é bem parecido com o seu **VSCode**. Qualquer dúvida, dê uma olhada [aqui](https://codesandbox.io/docs/learn/repositories/editors).
 
 ### Repositório
 
@@ -153,13 +153,14 @@ Para iniciarmos, vamos realizar o *setup* do **Stribord** na aplicação **app**
 
 Para isso, abra um terminal no CodeSandbox e execute na pasta do pacote **app** (entre na pasta do pacote app com o comando `cd apps/app`):
 
+Veja como abrir o Terminal:
 <img src="https://raw.githubusercontent.com/menosprezzi/stribord-example/main/docs/assets/open-terminal-codesandbox.gif" alt="open-terminal-codesandbox" />
 
 ```bash
 yarn add -D @stribord/cli
 ```
 
-Instalaremos o pacote **@stribord/cli** como uma dependência de desenvolvimento. Ele é responsável por fornecer a ferramenta de linha de comando, necessária para gerar o scaffolding de arquivos para trabalhar com o **Stribord** e a publicação das meta-informações da aplicação para a plataforma.
+Instalaremos o pacote **@stribord/cli** como uma dependência de desenvolvimento. Ele é responsável por fornecer a ferramenta de linha de comando, necessária para gerar o *scaffolding* de arquivos para trabalhar com o **Stribord** e a publicação das meta-informações da aplicação para a plataforma.
 
 Após isso, execute no terminal (ainda na pasta do pacote **app**)
 
@@ -192,9 +193,9 @@ Para isso, execute no terminal (ainda na pasta do pacote **app**)
 yarn exec stribord init
 ```
 
-Seguindo as pergundas, você vai responder (aquilo que está grifado em negrito):
+Seguindo as pergundas, você vai responder:
 
-> ✔ Enable remote synchronization? If you want to use Stribord only locally, just disable it. (You can toggle it later too) · **no** / yes
+> ✔ Enable remote synchronization? If you want to use Stribord only locally, just disable it. (You can toggle it later too) · **no**
 
 A plataforma foi desenvolvida para operar de forma distribuida, da mesma forma que você usa o seu Git: Você tem o seu Local e o seu Remote (que chamamos aqui de **BackEnd**). Assim, possibilitamos que você realize alterações e submeta ao **BackEnd** para publicar. Podemos fornecer uma série de automações que permitem, por exemplo, verificar se suas alterações não irão impactar negativamente alguma **Extension** que consome os seus pontos de extensão (gerando uma *breaking change*) e permitir que os devs tome ações proativamente.
 
@@ -223,10 +224,9 @@ No caso de **extendable** do tipo `app`, é necessário um setup adicional feito
 
 Feito a instalação e inicialização, vamos alterar nosso código para configurar o cliente do Stribord através da SDK **@stribord/react-client**.
 
-Basta adicionar as linhas abaixo:
+Basta adicionar as linhas abaixo no arquivo `apps/app/src/app.tsx`:
 
 ```tsx
-// Arquivo apps/app/src/app.tsx
 import {
   StribordDeployment,
   StribordHost,
@@ -290,7 +290,7 @@ O tipo do **Ponto de Extensão**. Cada tipo possui um determinado uso. O tipo **
 
 Este comando gerará um código para facilitar o desenvolvimento, e esta opção determina em qual caminho (a partir do `src`) este código será gerado.
 
-Dê uma olhada no arquivo `/src/extension-points/dashboard-extension.ts`. Ele contém a declaração desse **Ponto de Extensão**.
+Dê uma olhada no arquivo `apps/app/src/extension-points/dashboard-extension.ts`. Ele contém a declaração desse **Ponto de Extensão**.
 
 > 🚀 Você pode adicionar uma descrição ao ponto de extensão. Basta adicionar ao JSDoc da declaração um `@description`, como no exemplo abaixo:
 >
@@ -310,11 +310,9 @@ Dê uma olhada no arquivo `/src/extension-points/dashboard-extension.ts`. Ele co
 
 Agora, vamos instalar o **Ponto de Extensão** criado no nosso dashboard.
 
-Adicione as linhas abaixo no componente `DashboardPage`:
+Adicione as linhas abaixo no componente `DashboardPage` (`apps/app/src/components/dashboard-page.tsx`):
 
 ```ts
-// Arquivo apps/app/src/components/dashboard-page.tsx
-
 import { useSlot } from "@stribord/react-client";
 import { DashboardCardSlot } from '../extension-points/dashboard-card-extension';
 
@@ -351,7 +349,7 @@ No diretório do pacote **app** (`apps/app`), execute no terminal:
 yarn exec stribord publish --local
 ```
 
-O **Stribord** gerará um pacote NPM, contendo os contratos do que ela expõe para que as **Extensions** possam consumir. Por isso podemos dizer que o **Stribord** possui 100% *end-to-end type-safe* (como o famoso [tRPC](https://trpc.io/)).
+O **Stribord** gerará um pacote NPM, contendo os contratos do que ela expõe para que as **Extensions** possam consumir. Por isso, podemos dizer que o **Stribord** possui 100% *end-to-end type-safe* 💙TS💙 (como o famoso [tRPC](https://trpc.io/)).
 
 > Em um cenário real (com o *sync* ativado), este pacote seria publicado no registry NPM configurado no projeto, disponibilizando esse pacote para ser instalado em outros projetos. Aqui, no nosso exemplo, o pacote será utilizado apenas localmente, sem necessidade de publicar.
 
@@ -373,11 +371,9 @@ Primeiramente, devemos executar a Instalação e Inicialização do **Stribord**
 
    - Extendable Type: **extension**
 
-Você terá que adicionar a seguintes linhas no `webpack.config.js` do projeto **extension**:
+Você terá que adicionar a seguintes linhas no `apps/extension/webpack.config.js` do projeto **extension**:
 
 ```js
-// Arquivo apps/extension/webpack.config.js
-
 // ...
 // Localize o ModuleFederationPlugin e adicione uma nova entrada de exposes na configuração
 		new ModuleFederationPlugin({
@@ -414,7 +410,7 @@ Você pode editar o arquivo gerado em `apps/extension/src/implementations/leads-
 
 #### Testando a sua Implementação
 
-Para testar sua implementação isoladamente, você pode importar ela normalmente no `app.tsx` do projeto **extension** e executar:
+Para testar sua implementação isoladamente, você pode importar ela normalmente no `apps/extension/src/app.tsx` do projeto **extension** e executar:
 
 ```bash
 yarn run start:extension
@@ -477,7 +473,6 @@ Feito isso, precisamos informar a plataforma em *runtime* que estamos utilizando
 Para isso, localize essas linhas no arquivo `apps/app/src/app.tsx`. Adicione a prop `id` ao componente `StribordDeployment` com o valor `@stribord-examples/app:my-product`.
 
 ```tsx
-// Arquivo apps/app/src/app.tsx
       <StribordDeployment id="@stribord-examples/app:my-product">
         <IonReactRouter>
           <IonApp>
@@ -513,9 +508,8 @@ O interessante em MicroFrontEnds é poder compartilhar dados entre as peças da 
 
 Vamos definir um novo **contrato** para o nosso **Slot**. Para isso, vamos modificar o `DashboardCardSlotProps` para que possamos compartilhar o filtro selecionado `FilterBy` e definir qual formato de componente deve ser utilizado para renderizar o Card na tela:
 
+Abra o arquivo `apps/app/src/extension-points/dashboard-card-extension.tsx`.
 ```ts
-// Arquivo apps/app/src/extension-points/dashboard-card-extension.tsx
-
 // ...
 import React from "react";
 
@@ -531,9 +525,8 @@ interface DashboardCardSlotProps {
 
 Vamos compartilhar as informações necessárias a partir da `DashboardPage`:
 
+Abra o arquivo `apps/app/src/components/dashboard-page.tsx`
 ```tsx
-// Arquivo apps/app/src/components/dashboard-page.tsx
-
 // ...
 
 // Criar o Wrapper que deverá envolver todos os cards adicionados pelo Slot.
@@ -561,10 +554,8 @@ Você deve publicar o **app** novamente para que suas alterações sejam registr
 
 Vamos utilizar das informações compartilhadas para introduzir nossa funcionalidade. Além disso, como desenvolvedores da **extension**, devemos respeitar o novo contrato definido pelo **app**! Modifique a implementação `LeadsDashboardCard`:
 
+Abra o arquivo `apps/extension/src/implementations/leads-dashboard-card.tsx` e copie e cole o código abaixo.
 ```ts
-// Arquivo apps/extension/src/implementations/leads-dashboard-card.tsx
-// Copie e cole diretamente!
-
 import { DashboardCardSlot } from "@stribord-examples/app-stribord-typings";
 import React from "react";
 import { Line, LineChart, Legend, XAxis } from "recharts";
@@ -602,9 +593,21 @@ export const LeadsDashboardCard: DashboardCardSlot = ({
 
 Salve e faça um *refresh* no *preview* do **app**. Teste os filtros e veja que agora a card possui sua funcionalidade!
 
-# Parabéns ✨ (e obrigado 🙌)
+# Parabéns ✨ (e muito obrigado 🙌)
 
-<!-- textinho de conclusão, agradecimento, comentar sobre outras funcionalidades, e pedir para responder a pesquisa -->
+Muito obrigado por ter participado do experimento até aqui! Saiba que isso foi fundamental para o projeto e para o meu Trabalho de Conclusão. 
+
+Você agora é um *alpha-user* do **Stribord** 😄!
+
+Caso queira, você pode me encontrar:
+- [E-mail pessoal](mailto:guilhermeprezzi1997@gmail.com)
+- [E-mail profissional](mailto:guilherme.prezzi@totvs.com.br)
+- [WhatsApp](https://wa.me/5551997264901) (eu demoro, mas respondo)
+- [LinkedIn](https://www.linkedin.com/in/guilherme-prezzi/) (entro com pouca frequência)
+
+## Você pode agora responder o [questionário de avaliação clicando aqui](https://forms.gle/nVKk8b94MCP9N3Ni9)
+
+Há mais para descobrir com o **Stribord**, caso você queira. Vou deixar mais exemplos na seção **Indo Além** logo abaixo.
 
 # Indo Além 🚀
 
@@ -614,14 +617,13 @@ Até aqui, mesmo rodando localmente tanto a **app** quanto a **extension**, real
 
 Pensando em melhorar essa experiência de desenvolvimento, o **Stribord** possibilita que você aponte sua **extension** para uma **app** remota, assim como você faz quando você está consumindo um serviço de API REST, por exemplo: você passa a apontar para sua URL e testa sua integração com ele, sem a necessidade de rodar ele localmente.
 
-Para isso, é simples: Crie um arquivo `.env` no diretório do projeto **extension** com o conteúdo abaixo, substituindo a `<URL do app>` pela URL onde o **app** está rodando.
+Para isso, é simples: Crie um arquivo `.env` no diretório do projeto **extension** (`apps/extension`) com o conteúdo abaixo, substituindo a `<URL do app>` pela URL onde o **app** está rodando.
 
 ```
-# Arquivo apps/extension/.env
 REMOTE_URL='<URL do app>/remoteEntry.js'
 ```
 
-Após isso, modifique o `webpack.config.js` do **extension**, adicionado a seguinte configuração no `ModuleFederationPlugin`.
+Após isso, modifique o `apps/extension/webpack.config.js` do **extension**, adicionado a seguinte configuração no `ModuleFederationPlugin`.
 
 ```js
   plugins: [
@@ -637,12 +639,10 @@ Após isso, modifique o `webpack.config.js` do **extension**, adicionado a segui
 
 > ℹ️ No futuro, essa configuração manual também não será necessária.
 
-Agora, vamos modificar o arquivo `bootstrap.tsx` do **extension** para o seguinte:
+Agora, vamos modificar o arquivo `apps/extenstion/src/bootstrap.tsx` do **extension** para o seguinte:
 
+ Você pode copiar e colar o conteúdo abaixo diretamente.
 ```tsx
-// Arquivo apps/extension/src/bootstrap.tsx
-// Você pode copiar e colar diretamente
-
 import { Overrides, StribordOverrides } from '@stribord/react-client';
 import RemoteApp from '@stribord-examples/app/app';
 import React from 'react';
@@ -676,25 +676,27 @@ O **Stribord** oferece também o **tipo de Ponto de Extensão** chamado **Factor
 
 Para isso, execute os passos:
 
-1. Criar um novo ponto de extensão <!-- colocar link para a seção que ensina -->
+1. Criar um novo Ponto de Extensão
 
    - Id: `routes`
 
    - Tipo: `Factory`
+   
+   - Modifique seu contrato como no [exemplo](https://github.com/menosprezzi/stribord-example/blob/resolved-example/apps/app/src/extension-points/routes-extension.ts)
 
-2. Veja o exemplo de setup do ponto de extensão aqui
+2. Instale o Ponto de Extensão no arquivo `apps/app/src/routes.tsx` como no [exemplo](https://github.com/menosprezzi/stribord-example/blob/resolved-example/apps/app/src/routes.tsx).
 
 3. Publique o projeto **app**
 
 4. Extenda o Ponto de Extensão `routes` no projeto extension
 
-5. Crie um novo componente para ser a nova página adicionada
+5. Crie um novo componente para ser a nova página adicionada, como no [exemplo](https://github.com/menosprezzi/stribord-example/blob/resolved-example/apps/extension/src/components/leads-details-page.tsx)
 
-6. Adicione a página à implementação do **Ponto de Extensão**
+6. Adicione a rota para a nova página na implementação do **Ponto de Extensão**, como no [exemplo](https://github.com/menosprezzi/stribord-example/blob/resolved-example/apps/extension/src/implementations/leads-routes.tsx)
 
-7. Adicione um botão a tela para navegar seu usuário até a nova página
+7. Adicione um botão a tela para navegar seu usuário até a nova página, como no [exemplo](https://github.com/menosprezzi/stribord-example/blob/resolved-example/apps/extension/src/implementations/leads-dashboard-card.tsx)
 
-# Outros desafios (Personalização para clientes)
+# Um cenário mais dinâmico: Personalização para Clientes
 
 Personalização é um dos maiores desafios em Software (depois de cache validation e dar nome as coisas hahah 😄). Sempre há um tabu dentro das organizações quando um cliente solicita uma nova funcionalidade específica: Como suportar uma personalização sem *sujar* o código do nosso produto e, além disso, de forma escalável, sem necessitar uma grande operação?
 
@@ -727,4 +729,5 @@ const App = () => {
 
 # Futuro
 
-<!-- comentar sobre o roadmap do Stribord -->
+O projeto ainda tem muito que evoluir. Atualmente, ele não está OpenSource, mas faremos sua abertura em breve, juntamente com o site que estamos desenvolvendo, onde toda a documentação ficará disponível para os desenvolvedores.
+ temos Meetups para participar, advogando sobre a ferramenta. Ela já possui uso experimental em 
