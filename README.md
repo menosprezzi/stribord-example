@@ -15,45 +15,7 @@ Este CodeSandbox funcionará como um *Playground* de experimentação da soluç�
 
 [Compartilhe isso no WhatsApp](https://wa.me/?text=Voc%C3%AA%20que%20%C3%A9%20desenvolvedor%20FrontEnd%2C%20j%C3%A1%20teve%20contato%20com%20MicroFrontEnds%3F%20Se%20interessa%20pelo%20assunto%3F%0AParticipe%20da%20pesquisa%20%2AUma%20Plataforma%20para%20o%20desenvolvimento%20de%20Aplica%C3%A7%C3%B5es%20_Web_%20extens%C3%ADveis%20baseada%20em%20_Micro-Frontends_%2A%21%0A%0AMe%20chamo%20Guilherme%20Prezzi%2C%20sou%20Arquiteto%20FrontEnd%20na%20TOTVS%2C%20formando%20em%20An%C3%A1lise%20e%20Desenvolvimento%20de%20Sistemas%20pela%20UNISINOS%2C%20e%20convido%20voc%C3%AA%20para%20conhecer%20um%20pouco%20sobre%20os%20desafios%20que%20o%20uso%20de%20MicroFrontEnd%20introduz%2C%20e%20experimentar%20uma%20solu%C3%A7%C3%A3o%20que%20estou%20desenvolvendo%2C%20junto%20com%20outros%20desenvolvedores%2C%20para%20suprir%20a%20falta%20de%20ferramentas%20e%20conceitos%20para%20lidar%20com%20essa%20arquitetura%20em%20qualquer%20escala.%0A%0AAcesse%3A%20https%3A%2F%2Fcodesandbox.io%2Fp%2Fgithub%2Fmenosprezzi%2Fstribord-example%2Fmain)
 
-# Iniciando
-
-## O que é MicroFrontEnd?
-
-No *FrontEnd* de um sistema é comum que, com o passar do tempo, a aplicação *Web* tornar-se em um grande monolito, com uma larga base de código, aumentando a sua complexidade de manutenção (PELTONEN et al., 2021).
-
-<img align="center" src="https://micro-frontends.org/ressources/diagrams/organisational/monolith-frontback-microservices.png" alt="FrontEnd Monolítico" width="600"/>
-
-<small>Fonte: Micro-frontends.org.</small>
-
-*Micro-FrontEnds* traz os conceitos de *Microservices* para a camada *FrontEnd*, visando possibilitar dividir a aplicação de forma vertical, possibilitando assim que, em uma estrutura dividida por domínios de negócio, a aplicação seja dividida da mesma forma como também seus times, onde então cada um seja responsável por uma fatia, de ponta a ponta (PELTONEN et al., 2021).
-
-<img align="center" src="https://micro-frontends.org/ressources/diagrams/organisational/verticals-headline.png" alt="Exemplo de Times End-to-End com Micro-FrontEnd em uma aplicação de E-commerce" width="600"/>
-
-<small>Fonte: Micro-frontends.org.</small>
-
-*Micro-FrontEnds* é um conjunto de técnicas arquiteturais de *FrontEnd*, Infraestrutura e *DevOps* que permite a independência de desenvolvimento, integração, entrega e execução entre módulos *FrontEnd* de um sistema, tornando-se então aplicações isoladas e intercomunicáveis, o que possibilita alta escalabilidade – premissa principal da arquitetura de *Microservices* (JACKSON, 2019).
-
-Em *runtime*, essas aplicações são compostas, podendo ser orquestradas e consolidadas em uma só por uma outra aplicação (JACKSON, 2019).
-
-<img align="center" src="https://martinfowler.com/articles/micro-frontends/deployment.png" alt="Cada FrontEnd é versionado, construído e entregue separadamente, sendo composto em tempo de execução" width="600"/>
-
-<small>Fonte: Martinfowler.com.</small>
-
-Existem diversas formas de se criar aplicações em arquitetura de *Micro-FrontEnds*, mas é ideal que se escolha por somente uma estratégia (PELTONEN et al., 2021).
-
-## Quais problemas temos com MicroFrontEnd?
-
-Entre alguns problemas estudados no artigo *Motivations, benefits, and issues for adopting Micro-Frontends: A Multivocal Literature Review* de PELTONEN et al.:
-
-1. Pelo fato de que muitas vezes há sobreposição entre as stacks utilizadas pelos *MFEs*, ou pela duplicação de uma mesma dependência sendo requisitada em *runtime*, há **crescimento no tamanho do Payload carregado pelo Usuário**
-2. Assim como nos Microservices, é comum observar a necessidade de **duplicar códigos** para que cada componente possa operar autonomamente. **Muitas vezes essa duplicação pode ser prematura, levando a inconsistencias.**
-3. Visando diminuir o tamanho de payload ocasionado pela duplicação de dependências, pode ser empregadas técnicas que possibilitem compartilhar dependências comuns. **Porém, como podemos garantir que todos os *MFEs* estão utilizando uma mesma determinada versão de uma dependência na sua construção para prevenir erros em *runtime*?**
-4. **Cresce a nessecidade de maior Governança, Colaboração e Alinhamento**, uma vez que teremos pessoas de diferentes *skills* técnicos trabalhando isoladamente, além da interdependência entre times gerada pela necessidade de integrar os diversos componentes construídos.
-5. **Complexidade de dominar o conceito** e definir **como as coisas vão se comunicar**, podendo levar à má divisão das coisas e escolhas que podem tornar o projeto obsoleto
-6. **Como garantir que um *MFE* irá funcionar com os demais em Produção**, uma vez que cada time está apenas desenvolvendo o seu *MFE* isoladamente, sem conseguir reproduzir com fidelidade o ambiente Produtivo localmente?
-7. **Falta de Técnicas de Monitoramento**
-
-Como podemos utilizar de MicroFrontEnds para aumentar a escalabilidade sem cair nestes problemas?
+Se você quiser saber mais sobre o que é MicroFrontEnd e o que motivou essa pesquisa, acesse `docs/MicroFrontEnd.md`.
 
 # Desafio
 
@@ -61,21 +23,21 @@ Imaginamos que temos um Produto SaaS de Marketing que apresenta, entre suas pág
 
 A aplicação FrontEnd Web desta solução começa a crescer e logo pensamos que é uma boa ideia quebrar ela em módulos menores, cada um com seu conjunto de funcionalidades e páginas, com a utilização de MicroFrontEnd (*MFE*). Ficamos então com uma aplicação *"mãe"* (chamada de *shell*, no conceito de MicroFrontEnds) que tem a responsabilidade de ser uma *casca* que integra os demais MicroApps em uma só aplicação.
 
-![mfes-produto](https://raw.githubusercontent.com/menosprezzi/stribord-example/main/docs/assets/mfes-produto.png)
+<img src="https://raw.githubusercontent.com/menosprezzi/stribord-example/main/docs/assets/mfes-produto.png" />
 
 Isso possibilitaria também que tivéssemos um time (*squad*) responsável para cada MicroApp, segregando suas responsabilidades.
 
-Dado os demais problemas que comentamos acima, essa abordagem introduz mais um outro detalhe: A aplicação **my-product-web** depende de outras 3 aplicações para funcionar, fazendo com que a *squad* responsável seja obrigada a cuidar da integração com os outros 3 componentes em sua aplicação, entendendo o que e de que forma eles expõem (ou seja, sua interface pública, seus *contratos* de API). E essa responsabilidade cresce com o número de módulos. Além disso, as demais *squads* tornam-se agora fornecedoras, e isso introduz a responsabilidade de cuidar do que está sendo exposto.
+Essa abordagem introduz mais um outro detalhe: A aplicação **my-product-web** depende de outras 3 aplicações para funcionar, fazendo com que a *squad* responsável seja obrigada a cuidar da integração com os outros 3 componentes em sua aplicação, entendendo o que e de que forma eles expõem (ou seja, sua interface pública, seus *contratos* de API). E essa responsabilidade cresce com o número de módulos. Além disso, as demais *squads* tornam-se agora fornecedoras, e isso introduz a responsabilidade de cuidar do que está sendo exposto.
 
 O ideal é termos um cenário onde esta relação é invertida. Dessa forma, a *squad* que detêm o componente **my-product-web** torna-se então uma única fornecedora e a responsabilidade mater a integração fica distribuída entre as *squads*.
 
-![mfes-invertido](https://raw.githubusercontent.com/menosprezzi/stribord-example/main/docs/assets/mfes-invertido.png)
+<img src="https://raw.githubusercontent.com/menosprezzi/stribord-example/main/docs/assets/mfes-invertido.png" />
 
 Mas como fazer isso mantendo o propósito de *casca* que a aplicação **my-product-web** possui, sendo a camada de integração das demais funcionalidades? Como atingir esse objetivo em MicroFrontEnds?
 
 ## Stribord
 
-Tendo em vista os desafios presentes no desenvolvimento em arquitetura de MFEs... (escrever mais aqui)
+Tendo em vista os desafios que temos ao lidar com MFEs, pensamos em criar uma ferramenta para endereçar estes e outros pontos.
 
 <img align="left" src="https://raw.githubusercontent.com/menosprezzi/stribord-example/main/docs/assets/stribord-logo.png" alt="Logo do Stribord" width="120"/>**Stribord** é uma plataforma de **desenvolvimento**, **gestão** e **orquestração** de aplicações orientadas a arquitetura de MicroFrontEnds. Seu propósito é fornecer a tecnologia necessária para resolver os problemas comuns à arquitetura distribuída presentes em MFEs, trazendo conceitos estruturais que fundamentem o design de sistemas em MFE e soluções técnicas que permitam executar essa arquitetura, visando garantir a integração não só entre os componentes mas também entre suas equipes.
 
@@ -106,23 +68,20 @@ Dado o cenário comentado anteriormente, a ideia é criarmos uma aplicação que
 
 Para isso, estaremos utilizando **React v16, TypeScript e Webpack.**
 
-Neste tutorial, vamos fazer o seguinte experimento:
+Neste tutorial, vamos fazer os seguintes passos:
 
-- Realizar o Setup do Stribord em um Projeto: para podermos utilizar sua CLI e SDK.
-- Criar Pontos de Extensão: permitindo que MFEs estendam as funcionalidades da nossa aplicação, tornando ela um *shell*.
-- Publicar um Projeto na plataforma: Para que a plataforma conheça os detalhes do seu projeto e possa orquestrar os MFEs relacionados.
-- Implementar Pontos de Extensão: Para que possamos estender as funcionalidades de uma aplicação.
-- Testar suas implementações com uma App remota: Para que possamos executar nossp MFE apontando para uma App remota, podendo reproduzir o que está em produção localmente.
+1. **Realizar o Setup do Stribord em um Projeto**: para podermos utilizar sua CLI e SDK.
+2. **Criar Pontos de Extensão**: permitindo que MFEs estendam as funcionalidades da nossa aplicação, tornando ela um *shell*.
+3. **Publicar um Projeto na Plataforma**: Para que a plataforma conheça os detalhes do seu projeto e possa orquestrar os MFEs relacionados.
+4. **Implementar Pontos de Extensão**: Para que possamos estender as funcionalidades de uma aplicação.
 
-Ao final, teremos esse resultado
+Ao final, teremos esse resultado:
 
 <img src="https://raw.githubusercontent.com/menosprezzi/stribord-example/main/docs/assets/resolved.png" alt="resolved" style="zoom: 50%;" />
 
 Onde o Card circulado veio de um MFE, chamado de **extension**, e seu botão "View Details" leva o usuário para uma nova página, também vinda da MFE **extension**.
 
-Vamos utilizar o CodeSandbox para a execução deste Playground. Para iniciar, basta realizar o **Fork** desse sandbox em sua conta. Você pode criar uma conta no CodeSandbox gratuitamente utilizando sua conta do Github, Google ou Appple.
-
-<img src="https://raw.githubusercontent.com/menosprezzi/stribord-example/main/docs/assets/codesandbox-fork.png" alt="codesandbox-fork" style="zoom: 50%;" />
+Vamos utilizar o CodeSandbox para a execução deste Playground. Para iniciar, basta começar a editar este sandbox para realizar o **Fork** em sua conta. Você pode criar uma conta no CodeSandbox gratuitamente utilizando sua conta do Github, Google ou Apple.
 
 O Playground está rodando em um container Linux Debian com Node v16 já pré-instalado.
 
@@ -132,7 +91,7 @@ Logo você vai perceber que o CodeSandbox é bem parecido com o seu **VSCode**. 
 
 ### Repositório
 
-Estaremos utilizando Yarn Workspaces para organizar o projeto, apenas para facilitar a execução do teste. Porém, **o Stribord não obriga você possuir as aplicações em um monorepo** e nem uma determinada estrutura de arquivos. Na raiz do projeto deste exemplo, você irá enxergar:
+Este repositório utiliza de Yarn Workspaces para organizar o projeto, apenas para facilitar a execução do experimento. Porém, **o Stribord não obriga você possuir as aplicações em um monorepo** e nem uma determinada estrutura de arquivos. Na raiz do projeto deste exemplo, você irá enxergar:
 
 - apps
   - **app**: Uma aplicação React v16 com Webpack + Module Federation e Ionic apenas como lib de UI. Representará o nosso *shell*. Estará rodando na porta 3001
@@ -145,47 +104,12 @@ Estaremos utilizando Yarn Workspaces para organizar o projeto, apenas para facil
       - routes.tsx: Onde está declarado as rotas da aplicação
   - **extension**: Uma aplicação React, assim como a **app**. Representará um MFE que interage com a aplicação **app**. Estará rodando na porta 3002
 
-Cada pacote dentro de apps possuí seu próprio `package.json`, contendo suas dependências.
-
-### Setup do Stribord em um Projeto
+<img src="https://raw.githubusercontent.com/menosprezzi/stribord-example/main/docs/assets/step-1.png" />
 
 Para iniciarmos, vamos realizar o *setup* do **Stribord** na aplicação **app**.
+Aqui, já temos os pacotes da ferramenta já pré-instalados (`@stribord/cli` e `@stribord/react-client`).
 
-Para isso, abra um terminal no CodeSandbox e execute na pasta do pacote **app** (entre na pasta do pacote app com o comando `cd apps/app`):
-
-Veja como abrir o Terminal:
-<img src="https://raw.githubusercontent.com/menosprezzi/stribord-example/main/docs/assets/open-terminal-codesandbox.gif" alt="open-terminal-codesandbox" />
-
-```bash
-yarn add -D @stribord/cli
-```
-
-Instalaremos o pacote **@stribord/cli** como uma dependência de desenvolvimento. Ele é responsável por fornecer a ferramenta de linha de comando, necessária para gerar o *scaffolding* de arquivos para trabalhar com o **Stribord** e a publicação das meta-informações da aplicação para a plataforma.
-
-Após isso, execute no terminal (ainda na pasta do pacote **app**)
-
-```bash
-yarn add @stribord/react-client @stribord/core-client
-```
-
-Instalaremos os pacotes:
-
-- **@stribord/react-client**: Fornece o cliente da plataforma para React, necessário para nos comunicarmos com a plataforma **Stribord**.
-- **@stribord/core-client**: Fornece a base para o cliente React, além de utilitários comuns a todos frameworks suportados.
-
-Após a instalação dos pacotes, modifique o arquivo `apps/app/package.json` do pacote **app**, adicionando aos `scripts` um hook de `postinstall`, como o exemplo abaixo:
-
-```
-// Arquivo apps/app/package.json
-
-// ...
-  "scripts": {
-      "postinstall": "stribord sync"
-  }
-// ...
-```
-
-Agora, vamos inicializar o **Stribord** na aplicação. Isso criará o ambiente local do Stribord para que possamos executar nossos testes locais.
+Vamos inicializar o **Stribord** na aplicação. Isso criará o ambiente local do Stribord para que possamos executar nossos testes locais.
 
 Para isso, execute no terminal (ainda na pasta do pacote **app**)
 
@@ -193,19 +117,21 @@ Para isso, execute no terminal (ainda na pasta do pacote **app**)
 yarn exec stribord init
 ```
 
-Seguindo as pergundas, você vai responder:
+Seguindo as pergundas, você irá responder:
 
-> ✔ Enable remote synchronization? If you want to use Stribord only locally, just disable it. (You can toggle it later too) · **no**
+##### `✔ Enable remote synchronization? If you want to use Stribord only locally, just disable it. (You can toggle it later too) · **no**`
 
 A plataforma foi desenvolvida para operar de forma distribuida, da mesma forma que você usa o seu Git: Você tem o seu Local e o seu Remote (que chamamos aqui de **BackEnd**). Assim, possibilitamos que você realize alterações e submeta ao **BackEnd** para publicar. Podemos fornecer uma série de automações que permitem, por exemplo, verificar se suas alterações não irão impactar negativamente alguma **Extension** que consome os seus pontos de extensão (gerando uma *breaking change*) e permitir que os devs tome ações proativamente.
 
 Vamos desabilitar a sincronização com o **BackEnd** pois faremos apenas um teste local aqui.
 
-> ✔ The Id of your Domain · **stribord-examples**
+> ℹ️ Observação: A plataforma não substitui o Git. Você ainda terá seus repositórios. **O que a plataforma entende de alterações e realiza o controle são as meta-informações do seu Extendable, apenas.**
 
-**Domain** (Domínio) é o nome da organização no qual você estará publicando suas aplicações. Isso cria uma divisão lógica na plataforma **Stribord**, isto é, um domínio não enxerga o que o outro possui. Na vida real, pode também ser utilizado para segregar ambientes (development, staging, production) e/ou multiplas verticais/tribos de atuação da sua organização.
+#### `✔ The Id of your Domain · **stribord-examples**`
 
-> ✔ The Id of the extendable that you want to create · **@stribord-examples/app**
+**Domain** é o nome da organização no qual você estará publicando suas aplicações. Isso cria uma divisão lógica na plataforma **Stribord**, isto é, um domínio não enxerga o que o outro possui. Na vida real, pode também ser utilizado para segregar ambientes (development, staging, production) e/ou multiplas verticais/tribos de atuação da sua organização.
+
+#### `✔ The Id of the extendable that you want to create · **@stribord-examples/app**`
 
 **Extendable** é o nome que damos para a peça fundamenteal que a plataforma conhece. Todo código é considerado extensível, logo toda app que é registrada na plataforma é um **Extendable**. O id do **Extendable** deve representar ele bem (o ideal é que se uso o mesmo id do package.json do projeto, para facilitar a identificação). O **Id** é único para todo o **Domain**.
 
@@ -216,9 +142,7 @@ A plataforma conhece 2 tipos de Extendables atualmente:
 - **Extensions**: São MicroApps que tem o objetivo de estender a funcionalidade das aplicações (ou de outras Extensions). Pode ser utilizada para *fatiar* um grande produto em diversas MicroApps que se conversam. Pense nelas como *PlugIns do seu VSCode*.
 - **Apps**: São as aplicações que serão publicadas como **host**, podendo elas expor diversos **Pontos de Extensão** e carregar as diversas **Extensions** publicadas para apresentar suas funcionalidades.
 
-> ℹ️ Observação: Apenas para esclarecer sobre a sincronização, a plataforma não substitui o Git. Você ainda terá seus repositórios. **O que a plataforma entende de alterações e realiza o controle são as meta-informações do seu Extendable, apenas.**
-
-#### Setup de código para Apps
+#### Setup de Código
 
 No caso de **extendable** do tipo `app`, é necessário um setup adicional feito em código.
 
