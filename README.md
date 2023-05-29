@@ -671,4 +671,18 @@ const App = () => {
 
 # Futuro
 
-O projeto ainda tem muito para evoluir. Atualmente, ele não está OpenSource, mas faremos sua abertura em breve, juntamente com o site que estamos desenvolvendo, onde toda a documentação ficará disponível para os desenvolvedores. Além disso, está planejado uma solução Web para visualizar o catálogo de **Extendables** e seus **Extension Points** que estão publicados em um determinado **Domain**, facilitando a gestão.
+O projeto existe há alguns meses e ainda tem muito para evoluir. Atualmente, ele não está *OpenSource*, mas faremos sua abertura em breve, juntamente com o site que estamos desenvolvendo, onde toda a documentação ficará disponível para os desenvolvedores.
+Além disso, algumas funcionalidades estão planejadas:
+- Portal Web & BackEnd
+  - Visualizar catálogo de **Extendables** e seus **Extension Points** publicados em um determinado Domínio, facilitando a gestão visual
+  - Configurações de parâmetros globais de Domínio. como Lint de Dependências e versões banidas, Controle de Acesso.
+  - Observabilidade: Métricas de uso dos Pontos de Extensão
+  - Fluxo de Depreciação de Ponto de Extensão
+  - Notificar times caso haja mudanças em algum Extendable consumido
+- Funcionalidades Runtime (SDK):
+  - Estratégia de Resiliência e Rollback, para possibilitar voltar a uma versão antiga do Extendable caso um erro aconteça
+  - Integração com plataformas de APM e Error Monitoring como o Sentry
+  - Sistema de comunicação Reativa para comunicação desacoplada entre MFEs.
+- Wrapper Angular
+- Suporte a Native Federation
+
