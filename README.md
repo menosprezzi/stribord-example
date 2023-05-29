@@ -90,7 +90,7 @@ Vamos utilizar o CodeSandbox para a execução deste Playground. Para iniciar, b
 
 O Playground está rodando em um container Linux Debian com Node v16 já pré-instalado.
 
-<img src="https://raw.githubusercontent.com/menosprezzi/stribord-example/main/docs/assets/codesandbox-anatomy.png" alt="codesandbox-fork" style="zoom: 50%;" />
+<img src="https://raw.githubusercontent.com/menosprezzi/stribord-example/main/docs/assets/condesandbox-anatomy.png" style="zoom: 50%;" />
 
 Logo você vai perceber que o CodeSandbox é bem parecido com o seu **VSCode**. Qualquer dúvida, dê uma olhada [aqui](https://codesandbox.io/docs/learn/repositories/editors).
 
@@ -108,6 +108,7 @@ Este repositório utiliza de Yarn Workspaces para organizar o projeto, apenas pa
       - bootstrap.tsx: A execução principal da aplicação. Por estarmos utilizando de Module Federation como nossa engine, é necessário para possibilitar o carregamento de remotes.
       - routes.tsx: Onde está declarado as rotas da aplicação
   - **extension**: Uma aplicação React, assim como a **app**. Representará um MFE que interage com a aplicação **app**. Estará rodando na porta 3002
+
 ---
 
 <br />
@@ -425,6 +426,8 @@ yarn run start:extension
 ```
 
 Você irá ver sua implementação na página de Dashboard!
+
+---
 
 ### Deixando mais bonito (e funcional) ✨
 
