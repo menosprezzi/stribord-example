@@ -2,7 +2,7 @@
 
 Olá ✨!
 
-Você que é desenvolvedor FrontEnd, já teve contato com MicroFrontEnds? Se interessa pelo assunto?
+Você que é dev FrontEnd, já teve contato com MicroFrontEnds? Se interessa pelo assunto?
 
 Me chamo Guilherme Prezzi, sou Arquiteto FrontEnd na TOTVS, formando em Análise e Desenvolvimento de Sistemas pela UNISINOS, e convido você para conhecer um pouco
 sobre os desafios que o uso de MicroFrontEnd introduz. Vamos experimentar uma solução que estou desenvolvendo, junto com outros desenvolvedores, para suprir a falta de ferramentas e conceitos para lidar com essa arquitetura em qualquer escala.
