@@ -17,6 +17,8 @@ Este CodeSandbox funcionará como um *Playground* de experimentação da soluç�
 
 Se você quiser saber mais sobre o que é MicroFrontEnd e o que motivou essa pesquisa, acesse `docs/MicroFrontEnd.md`.
 
+Além disso, a motivação dessa pesquisa será apresentada no [**TDC INNOVATION 2023**, no dia 16/06, na trilha de Web / FrontEnd](https://thedevconf.com/tdc/2023/innovation/trilha-web-e-front-end).
+
 # Desafio
 
 Imaginamos que temos um Produto SaaS de Marketing que apresenta, entre suas páginas, uma home com um Dashboard contendo gráficos importantes para o cliente.
@@ -538,7 +540,7 @@ Caso queira, você pode me encontrar:
 - [WhatsApp](https://wa.me/5551997264901) (eu demoro, mas respondo)
 - [LinkedIn](https://www.linkedin.com/in/guilherme-prezzi/) (entro com pouca frequência)
 
-## Agora você pode responder o [questionário de avaliação clicando aqui](https://forms.gle/nVKk8b94MCP9N3Ni9)
+## Agora você pode responder o [questionário de avaliação clicando aqui](https://forms.gle/per81oGKZbtUP7g3A)
 
 Há mais para descobrir com o **Stribord**, caso você queira. Vou deixar mais exemplos na seção **Indo Além** logo abaixo.
 
