@@ -27,13 +27,13 @@ A aplicação FrontEnd Web desta solução começa a crescer e logo pensamos que
 
 Isso possibilitaria também que tivéssemos um time (*squad*) responsável para cada MicroApp, segregando suas responsabilidades.
 
-Essa abordagem introduz mais um outro detalhe: A aplicação **my-product-web** depende de outras 3 aplicações para funcionar, fazendo com que a *squad* responsável seja obrigada a cuidar da integração com os outros 3 componentes em sua aplicação, entendendo o que e de que forma eles expõem (ou seja, sua interface pública, seus *contratos* de API). E essa responsabilidade cresce com o número de módulos. Além disso, as demais *squads* tornam-se agora fornecedoras, e isso introduz a responsabilidade de cuidar do que está sendo exposto.
+Essa abordagem introduz um detalhe: A aplicação **my-product-web** agora dependerá de outras 3 aplicações para funcionar, fazendo com que a *squad* responsável seja obrigada a cuidar da integração com os outros 3 componentes em sua aplicação, entendendo o que e de que forma eles expõem (ou seja, sua interface pública, seus *contratos* de API). Essa responsabilidade cresce com o número de módulos. Além disso, as demais *squads* tornam-se agora fornecedoras, e isso introduz à elas a responsabilidade de cuidar do que está sendo exposto.
 
-O ideal é termos um cenário onde esta relação é invertida. Dessa forma, a *squad* que detêm o componente **my-product-web** torna-se então uma única fornecedora e a responsabilidade mater a integração fica distribuída entre as *squads*.
+O ideal é termos um cenário onde esta relação é invertida. Dessa forma, a *squad* que detêm o componente **my-product-web** torna-se então uma única fornecedora e a responsabilidade manter a integração fica distribuída entre as *squads* que consomem a partir dela, uma *Inversão de Controle*.
 
 <img src="https://raw.githubusercontent.com/menosprezzi/stribord-example/main/docs/assets/mfes-invertido.png" />
 
-Mas como fazer isso mantendo o propósito de *casca* que a aplicação **my-product-web** possui, sendo a camada de integração das demais funcionalidades? Como atingir esse objetivo em MicroFrontEnds?
+Mas como fazer isso mantendo o propósito de *casca* que a aplicação **my-product-web** deve possuir, sendo a camada de integração das demais funcionalidades? Como atingir esse objetivo com MicroFrontEnds?
 
 Tendo em vista os desafios que temos ao lidar com MFEs, pensamos em criar o **Stribord**.
 
@@ -41,7 +41,7 @@ Tendo em vista os desafios que temos ao lidar com MFEs, pensamos em criar o **St
 
 <img align="left" src="https://raw.githubusercontent.com/menosprezzi/stribord-example/main/docs/assets/stribord-logo.png" alt="Logo do Stribord" width="120"/>**Stribord** é uma plataforma de **desenvolvimento**, **gestão** e **orquestração** de aplicações orientadas a arquitetura de MicroFrontEnds. Seu propósito é fornecer a tecnologia necessária para resolver os problemas comuns à arquitetura distribuída presentes em MFEs, trazendo conceitos estruturais que fundamentem o design de sistemas em MFE e soluções técnicas que permitam executar essa arquitetura, visando garantir a integração não só entre os componentes mas também entre suas equipes.
 
-Através da CLI e SDKs, os desenvolvedores podem criar e configurar aplicações FrontEnd **extensíveis**, controlar como e quais MFEs serão consumidos, além manter e versionar meta-informações sobre estes MFEs e suas relações no modelo GitOps.
+Através da CLI e SDKs, os desenvolvedores podem criar e configurar aplicações FrontEnd **extensíveis**, controlar como e quais MFEs serão consumidos, além manter e versionar meta-informações sobre estes MFEs e suas relações no modelo *GitOps*.
 
 **Stribord é o (*Kubernetes+ArgoCD*) do MicroFrontEnd!**
 
@@ -67,16 +67,16 @@ Ficou na dúvida do funcionamento? Vamos executar o tutorial e logo você estar�
 
 Dado o cenário comentado anteriormente, a ideia é criarmos uma aplicação que receberá funcionalidades de outra aplicação, e faremos isso utilizando o **Stribord**. Nesse exemplo, vamos apenas considerar essa estrutura de aplicações:
 
-- **app**: Sendo a aplicação FrontEnd *shell*, que fornecerá a capacidade de ser extendida por outras
-- **extension**: Sendo um exemplo de uma MicroApp que estenderá a aplicação **app**, adicionando novas funcionalidades à ela
+- **app**: Sendo um Extendable do tipo **App**, ou seja, uma aplicação FrontEnd que fornecerá a capacidade de ser extendida por outras
+- **extension**: Sendo um exemplo de uma MicroApp que estenderá a aplicação **app**, adicionando novas funcionalidades à ela. Ou seja, um Extendable do tipo **Extension**.
 
-Para isso, estaremos utilizando **React v16, TypeScript e Webpack.**
+Nese tutorial estaremos utilizando **React v16, TypeScript e Webpack.**
 
-Neste tutorial, vamos fazer os seguintes passos:
+Vamos fazer os seguintes passos:
 
 1. Realizar o **Setup do Stribord em um Projeto**: para podermos utilizar sua CLI e SDK.
-2. **Criar Pontos de Extensão**: permitindo que MFEs estendam as funcionalidades da nossa aplicação, tornando ela um *shell*.
-3. **Publicar um Projeto** na Plataforma: Para que a plataforma conheça os detalhes do seu projeto e possa orquestrar os MFEs relacionados.
+2. **Criar Pontos de Extensão**: permitindo que MFEs estendam as funcionalidades da nossa aplicação.
+3. **Publicar um Projeto na Plataforma**: Para que a plataforma conheça os detalhes do seu projeto e possa orquestrar os MFEs relacionados.
 4. **Implementar um Ponto de Extensão**: Para que possamos estender as funcionalidades de uma aplicação.
 5. **Criar um Deployment**: Configurando o que deve ser carregado pela **app**.
 
@@ -84,9 +84,9 @@ Ao final, teremos esse resultado:
 
 <img src="https://raw.githubusercontent.com/menosprezzi/stribord-example/main/docs/assets/resolved.png" alt="resolved" style="zoom: 50%;" />
 
-Onde o Card circulado veio de um MFE, chamado de **extension**, e seu botão "View Details" leva o usuário para uma nova página, também vinda da MFE **extension**.
+Onde o Card circulado é uma funcionalidade carregada de uma **Extension**, e seu botão *"View Details"* leva o usuário para uma nova página, também vinda dessa **Extension**.
 
-Vamos utilizar o CodeSandbox para a execução deste Playground. Para iniciar, basta começar a editar este sandbox para realizar o **Fork** em sua conta. Você pode criar uma conta no CodeSandbox gratuitamente utilizando sua conta do Github, Google ou Apple.
+Vamos utilizar o CodeSandbox para a executar este *Playground*. Para iniciar, basta começar a editar este sandbox para realizar o **Fork** em sua conta. Você pode criar uma conta no CodeSandbox gratuitamente utilizando sua conta do Github, Google ou Apple.
 
 O Playground está rodando em um container Linux Debian com Node v16 já pré-instalado.
 
@@ -99,7 +99,7 @@ Logo você vai perceber que o CodeSandbox é bem parecido com o seu **VSCode**. 
 Este repositório utiliza de Yarn Workspaces para organizar o projeto, apenas para facilitar a execução do experimento. Porém, **o Stribord não obriga você possuir as aplicações em um monorepo** e nem uma determinada estrutura de arquivos. Na raiz do projeto deste exemplo, você irá enxergar:
 
 - apps
-  - **app**: Uma aplicação React v16 com Webpack + Module Federation e Ionic apenas como lib de UI. Representará o nosso *shell*. Estará rodando na porta 3001
+  - **app**: Uma aplicação React v16 com Webpack + Module Federation e Ionic (apenas como lib de UI). Representará o nosso *shell*. Estará rodando na porta 3001.
     - src: Onde fica nosso código fonte
       - components: Os diversos componentes React de nossa aplicação, como a Página Dashboard.
       - mock-data: Mock dos dados de uma API para executarmos nosso teste.
@@ -107,7 +107,7 @@ Este repositório utiliza de Yarn Workspaces para organizar o projeto, apenas pa
       - app.tsx: O componente principal renderizado pela aplicação, responsável pelo seu setup.
       - bootstrap.tsx: A execução principal da aplicação. Por estarmos utilizando de Module Federation como nossa engine, é necessário para possibilitar o carregamento de remotes.
       - routes.tsx: Onde está declarado as rotas da aplicação
-  - **extension**: Uma aplicação React, assim como a **app**. Representará um MFE que interage com a aplicação **app**. Estará rodando na porta 3002
+  - **extension**: Uma aplicação React, assim como a **app**. Representará um MFE que interage com a aplicação **app**. Estará rodando na porta 3002.
 
 ---
 
@@ -121,11 +121,11 @@ Aqui, já temos os pacotes da ferramenta (`@stribord/cli` e `@stribord/react-cli
 
 Dito isso, vamos inicializar o **Stribord** na aplicação. Isso criará o ambiente local do Stribord para que possamos executar nossos testes locais.
 
-Para isso, abra um terminal no CodeSandbox (gif abaixo) e execute o comando `yarn execute stribord init` na pasta do pacote **app** (entre na pasta do pacote app com o comando `cd apps/app`):
+Abra um terminal no CodeSandbox (como o gif abaixo), entre na pasta do pacote **app** (`cd apps/app`) e execute o comando `yarn execute stribord init`.
 
 <img src="https://raw.githubusercontent.com/menosprezzi/stribord-example/main/docs/assets/open-terminal-codesandbox.gif" alt="open-terminal-codesandbox" />
 
-Seguindo as pergundas, você irá responder:
+Seguindo as perguntas, você irá responder:
 
 ✔ Enable remote synchronization? If you want to use Stribord only locally, just disable it. (You can toggle it later too) · **no**
 
@@ -137,15 +137,13 @@ Seguindo as pergundas, você irá responder:
 
 ✔ Which framework will be used? · **@stribord/react-client**
 
-A plataforma foi desenvolvida para operar de forma distribuida, da mesma forma que você usa o seu Git: Você tem o seu Local e o seu Remote (que chamamos aqui de **BackEnd**). Assim, possibilitamos que você realize alterações e submeta ao **BackEnd** para publicar. Podemos fornecer uma série de automações que permitem, por exemplo, verificar se suas alterações não irão impactar negativamente alguma **Extension** que consome os seus pontos de extensão (gerando uma *breaking change*) e permitir que os devs tome ações proativamente.
+A plataforma foi desenvolvida para operar de forma distribuida, da mesma forma que você usa o seu Git: Você tem o seu Local e o seu Remote (que chamamos aqui de **BackEnd**). Assim, possibilitamos que você realize alterações e submeta ao **BackEnd** para publicar. Podemos fornecer uma série de automações que permitem, por exemplo, verificar se suas alterações não irão impactar negativamente alguma **Extension** que consome os seus pontos de extensão (gerando assim uma *breaking change*) e permitir que os devs tomem ações proativamente.
 
 > ℹ️ Observação: A plataforma não substitui o Git. Você ainda terá seus repositórios. **O que a plataforma entende de alterações e realiza o controle são as meta-informações do seu Extendable, apenas.**
 
 #### Setup de Código
 
-No caso de **Extendable** do tipo `app`, é necessário um setup adicional feito em código.
-
-Feito a inicialização, vamos alterar nosso código para configurar o cliente do Stribord através da SDK **@stribord/react-client**.
+No caso de **Extendable** do tipo **App**, é necessário um setup adicional feito em código.
 
 Basta adicionar as linhas abaixo no arquivo `apps/app/src/app.tsx`:
 
@@ -192,7 +190,7 @@ O conceito de **Ponto de Extensão** é o racional fundamental que sustenta o mo
 
 O tipo de Ponto de Extensão chamado **Slot** é utilizado para possibilitar que outras **Extensions** possam adicionar qualquer componente à nossa UI.
 
-Vamos criar um **Ponto de Extensão** do tipo **Slot** que possibilite que outras MicroApps adicionem um card a Dashboard.
+Vamos criar um **Ponto de Extensão** do tipo **Slot** que possibilite que outras **Extensions** adicionem um card a Dashboard.
 
 No diretório do pacote **app** (`apps/app`), execute:
 
@@ -204,13 +202,13 @@ Respondendo:
 
 ✔ The id of this Extension point · **dashboard-card**
 
-✔ Select the type of this Extension point · @stribord/react-client:Slot
+✔ Select the type of this Extension point · **@stribord/react-client:Slot**
 
 ✔ Where the implementation will be stored? (from source dir) · **extension-points**
 
 Dê uma olhada no arquivo `apps/app/src/extension-points/dashboard-card-extension.ts`. Ele contém a declaração do nosso **Ponto de Extensão**.
 
-> 🚀 Você pode adicionar uma descrição ao ponto de extensão. Basta adicionar ao JSDoc da declaração um `@description`, como no exemplo abaixo:
+> 💡 Você pode adicionar uma descrição ao ponto de extensão. Basta adicionar ao JSDoc da declaração um `@description`, como no exemplo abaixo:
 >
 > ```tsx
 > /**
@@ -294,16 +292,16 @@ Precisamos inicializar este projeto com o comando `yarn exec stribord init` no d
 
 ✔ Which framework will be used? · **@stribord/react-client**
 
-Além disso, você terá que adicionar a seguintes linhas no `apps/extension/webpack.config.js` do projeto **extension**:
+Após isso, você terá que adicionar a seguintes linhas no `apps/extension/webpack.config.js` do projeto **extension**:
 
 ```js
 // ...
-// Localize o ModuleFederationPlugin e adicione uma nova entrada de exposes na configuração
 		new ModuleFederationPlugin({
       name: 'StribordExamplesExtension',
       filename: './remoteEntry.js',
       exposes: {
-        './manifest': './src/manifest', // Expor o manifest.
+        // Localize o ModuleFederationPlugin e adicione uma nova entrada de exposes na configuração
+        './manifest': './src/manifest', // Expõe o manifest dessa extension.
       },
       // ...
     });
@@ -349,7 +347,7 @@ Deixe a aplicação executando.
 
 Da mesma forma que publicamos o **app**, vamos publicar o **extension**.
 
-Por se tratar de uma **Extension**, o **Stribord** precisará saber em que URL os estáticos dessa aplicação estarão disponíveis para que seja feito o seu carregamento. Lembrando que, por estarmos utilizando de Webpack Module Federation, este valor deverá ser a URL com o caminho para seu **remoteEntry**.
+Por se tratar de uma **Extension**, o **Stribord** precisará saber em que URL os estáticos dessa aplicação estarão disponíveis para que seja feito o seu carregamento posteriormente.
 
 Como estamos executando ela localmente, vamos informar a URL em que a aplicação **extestension** está executando.
 
@@ -371,9 +369,9 @@ Respondendo:
 
 ### 5. Criar Deployment
 
-Agora carregaremos a extensão criada na nossa aplicação **app**. Se você recarregar a aplicação **app** vai notar que nada mudou e sua implementação não apareceu na página Dashboard. Não estranhe, o **Stribord** separa o carregamento de **Extensions** em uma **App** em algo chamado **Deployment**.
+Agora carregaremos a extensão criada na nossa aplicação **app**. Se você recarregar a aplicação **app** vai notar que nada mudou e sua implementação não apareceu na página Dashboard. Não estranhe, o **Stribord** separa o carregamento de **Extensions** de uma **App** em algo chamado **Deployments**.
 
-O **Deployment** é como disponibilizamos o controle de quais **Extensions** devem ser carregadas (e qual versão, caso o sua organização realize o versionamento adequado).
+O **Deployment** é como disponibilizamos o controle de quais **Extensions** devem ser carregadas (e qual versão, caso o sua organização realize algum versionamento).
 
 Podemos ter vários **Deployments** de uma **App** contendo diferentes configurações. Isso pode ser utilizado para criar testes A/B, FeatureFlags, customizações específicas para clientes etc.
 
@@ -397,7 +395,7 @@ Url onde essa aplicação estará disponível e rodando. Apenas para manter a in
 
 Selecionar quais extensões estarão habilitadas nesse **Deployment**. (Utilize a tecla <kbd>espaço</kbd> para selecionar).
 
-Feito isso, precisamos informar a plataforma em *runtime* que estamos utilizando o **Deployment** configurado `@stribord-examples/app:my-product`
+Feito isso, precisamos informar a plataforma em *runtime* que estamos utilizando o **Deployment** `@stribord-examples/app:my-product` recém criado.
 
 Para isso, localize essas linhas no arquivo `apps/app/src/app.tsx`. Adicione a prop `id` ao componente `StribordDeployment` com o valor `@stribord-examples/app:my-product`.
 
@@ -437,7 +435,7 @@ Colocamos um novo pedaço na tela. Agora vamos trazer a funcionalidade! Além di
 
 O interessante em MicroFrontEnds é poder compartilhar dados entre as peças da aplicação e no **Stribord** isso é fácil como lidar com qualquer componente nativo do seu Framework, nesse caso aqui, o React.
 
-Vamos definir um novo **contrato** para o nosso **Slot**. Para isso, vamos modificar o `DashboardCardSlotProps` para que possamos compartilhar o filtro selecionado `FilterBy` e definir qual formato de componente deve ser utilizado para renderizar o Card na tela:
+Vamos definir um novo **contrato** para o nosso **Slot**. Para isso, vamos modificar o `DashboardCardSlotProps` para que possamos compartilhar o filtro selecionado `FilterBy` e definir qual formato de componente deve ser utilizado para renderizar o Card na tela através de um `wrapper` a ser definido:
 
 Abra o arquivo `apps/app/src/extension-points/dashboard-card-extension.tsx`.
 ```ts
@@ -477,13 +475,17 @@ export const DashboardPage = () => {
 }
 ```
 
-Você deve publicar o **app** novamente para que suas alterações sejam registradas na plataforma **Stribord** e que o pacote de **typings** seja gerado novamente.
+Você deve publicar o **app** novamente para que suas alterações sejam registradas na plataforma **Stribord** e que o pacote de **typings** seja gerado novamente. Execute dentro do diretório `apps/app`:
+
+```
+yarn exec stribord publish --local
+```
 
 > ℹ️ Em um cenário real, deve ser incrementado a versão do projeto no **package.json** pois nossa alteração alterou o **contrato** da aplicação, gerando quebras em quem consumia a última versão. No futuro, o **Stribord** irá identificar essas quebras e notificar os desenvolvedores que dependem desse ponto de extensão, através de automações de CI nos projetos.
 
 #### Adicionando a funcionalidade no novo Card
 
-Vamos utilizar das informações compartilhadas para introduzir nossa funcionalidade. Além disso, como desenvolvedores da **extension**, devemos respeitar o novo contrato definido pelo **app**! Modifique a implementação `LeadsDashboardCard`:
+Voltando à **extension**, vamos utilizar das informações compartilhadas para introduzir nossa funcionalidade. Além disso, como desenvolvedores da **extension**, devemos respeitar o novo contrato definido pelo **app**! Modifique a implementação `LeadsDashboardCard`:
 
 Abra o arquivo `apps/extension/src/implementations/leads-dashboard-card.tsx` e copie e cole o código abaixo.
 ```ts
@@ -536,7 +538,7 @@ Caso queira, você pode me encontrar:
 - [WhatsApp](https://wa.me/5551997264901) (eu demoro, mas respondo)
 - [LinkedIn](https://www.linkedin.com/in/guilherme-prezzi/) (entro com pouca frequência)
 
-## Você pode agora responder o [questionário de avaliação clicando aqui](https://forms.gle/nVKk8b94MCP9N3Ni9)
+## Agora você pode responder o [questionário de avaliação clicando aqui](https://forms.gle/nVKk8b94MCP9N3Ni9)
 
 Há mais para descobrir com o **Stribord**, caso você queira. Vou deixar mais exemplos na seção **Indo Além** logo abaixo.
 
@@ -570,9 +572,9 @@ Após isso, modifique o `apps/extension/webpack.config.js` do **extension**, adi
 
 > ℹ️ No futuro, essa configuração manual também não será necessária.
 
-Agora, vamos modificar o arquivo `apps/extenstion/src/bootstrap.tsx` do **extension** para o seguinte:
+Agora, vamos modificar o arquivo `apps/extenstion/src/bootstrap.tsx` do pacote **extension** para o seguinte:
 
- Você pode copiar e colar o conteúdo abaixo diretamente.
+Você pode copiar e colar o conteúdo abaixo diretamente.
 ```tsx
 import { Overrides, StribordOverrides } from '@stribord/react-client';
 import RemoteApp from '@stribord-examples/app/app';
@@ -593,15 +595,15 @@ ReactDOM.render(
 );
 ```
 
-Certifique-se que a **app** está executando, pois agora estamos apontando para ela. Reexecute** o *start* do projeto **extension** e abra seu *preview*.
+Certifique-se que a **app** está executando, pois agora estamos apontando para ela. Reexecute o *start* do projeto **extension** e abra seu *preview*.
 
-Estaremos rodando diretamente nossa **extension** para executar testes. Em um cenário real, poderiamos apontar o nosso `.env` para apontar para o **app** do ambiente de desenvolvimento, algo do tipo `https://my-app.dev.org.com`.
+Estaremos rodando diretamente nossa **extension** para executar testes. Em um cenário real, poderiamos apontar o nosso `.env` para para um **app** do ambiente de desenvolvimento ou, inclusive, produção. Algo do tipo `https://my-app.org.com`. Isso possibilitaria simular a execução fielmente sem a necessidade de realizar deploy.
 
 ## Desafio adicional: Não é só sobre Cards na tela
 
 Com o **Stribord** você pode extender mais do que partes de uma página. Você pode utilizar o modelo de **Pontos de Extensão** para qualquer coisa na sua aplicação. Tente executar o próximo desafio: **Como utilizar o Stribord para adiocionar novas Páginas em uma aplicação?**
 
-### Utilizando de Pontos de Extensão para adicionar novas Rotas
+### Utilizando de Pontos de Extensão para adicionar novas Páginas
 
 O **Stribord** oferece também o **tipo de Ponto de Extensão** chamado **Factory**. Com ele, você pode carregar qualquer **Função JavaScript**, definindo seus parâmetros e sua saída esperada.
 
