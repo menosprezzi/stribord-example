@@ -123,7 +123,9 @@ Aqui, já temos os pacotes da ferramenta (`@stribord/cli` e `@stribord/react-cli
 
 Dito isso, vamos inicializar o **Stribord** na aplicação. Isso criará o ambiente local do Stribord para que possamos executar nossos testes locais.
 
-Abra um terminal no CodeSandbox (como o gif abaixo), entre na pasta do pacote **app** (`cd apps/app`) e execute o comando `yarn execute stribord init`.
+Abra um terminal no CodeSandbox (como o gif abaixo), entre na pasta do pacote **app** (`cd apps/app`) e execute o comando `yarn exec stribord init`.
+
+> ℹ️ Observação: Deve ser utilizado [`yarn exec`](https://yarnpkg.com/cli/exec) pois a partir das últimas versões, o yarn não realiza o controle de bins. Fora do playground, caso você utilize o NPM, poderá utilizar `stribord <command>` normalmente.
 
 <img src="https://raw.githubusercontent.com/menosprezzi/stribord-example/main/docs/assets/open-terminal-codesandbox.gif" alt="open-terminal-codesandbox" />
 
